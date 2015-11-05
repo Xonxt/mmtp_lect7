@@ -1,3 +1,11 @@
+<!-- Dropdowns 
+<uib-accordion>
+  <uib-accordion-group heading="header">
+
+  </uib-accordion-group>
+</uib-accordion>
+-->
+
 <div style="width:600px; padding: 10px">
   <!-- ACCORDIONS -->
   <uib-accordion>
@@ -58,4 +66,55 @@
       <button class="btn btn-success" ng-click="main.addSlide()">Добавить</button>
     </uib-accordion-group>
   </uib-accordion>
+  
+  
+<!-- DROPDOWNS -->
+<uib-accordion>
+  <uib-accordion-group heading="Выпадающие списки">
+
+    <!-- Split button --><b>Never gonna </b>
+    <div class="btn-group" uib-dropdown>
+      <button id="split-button" type="button" class="btn btn-primary" ng-model="myDropdown">{{main.toggledDDItem}}</button>
+      <button type="button" class="btn btn-primary" uib-dropdown-toggle>
+        <span class="caret"></span>
+        <span class="sr-only">Split button!</span>
+      </button>
+      <ul class="uib-dropdown-menu" role="menu" aria-labelledby="split-button">
+        <li ng-disabled="disabled"><a href="#">Rick Astley is never going to...</a></li>
+        <li class="divider"></li>
+        <li ng-repeat="choice in main.ddItems">
+          <a href="#" ng-click="main.ddToggle($index)">{{choice}}</a>
+        </li>        
+      </ul>
+    </div>
+
+  </uib-accordion-group>
+</uib-accordion>
+
+<!-- МОДАЛЫ -->
+
+<script type="text/ng-template" id="myModalContent.html">
+  <div class="modal-header">
+    <h3 class="modal-title">{{ modalHeader }}</h3>
+  </div>
+  <div class="modal-body">
+    Текст: <b>{{ modalBody }}</b>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+    <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+  </div>
+</script>
+
+<uib-accordion>
+  <uib-accordion-group heading="Modals">
+    
+    <button type="button" class="btn btn-danger" ng-click="main.modalOpen('Заголовок!', 'Какое-то содержимое окна!')">ПОКАЗАТЬ!</button>
+    
+    <p>Окно было закрыто с результатом: <b>{{main.modalResult}}</b></p>
+
+  </uib-accordion-group>
+</uib-accordion>
+  
 </div>
+

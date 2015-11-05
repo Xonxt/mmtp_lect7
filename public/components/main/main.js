@@ -2,9 +2,9 @@
 
 var mainModule = angular.module('app.main', ['ngAnimate', 'ui.bootstrap']);
 
-mainModule.controller('MainController', [MainController]);
+mainModule.controller('MainController', ['$uibModal', MainController]);
 
-function MainController() {
+function MainController($uibModal) {
   var main = this;
   
   // ACCORDIONS
@@ -72,4 +72,55 @@ function MainController() {
   for (var i=0; i<4; i++) {
     main.addSlide();
   }
+  
+  // DROPDOWNS
+  main.ddItems = [
+    'give you up!',
+    'let you down!',
+    'turn around!',
+    'hurt you!'
+  ];
+  
+  main.toggledDDItem = main.ddItems[0];
+  
+  main.ddToggle = function(id) {   
+    main.toggledDDItem = main.ddItems[id];       
+  }
+  
+  // MODALS
+  main.modalOpen = function (header, body) {
+
+    var modalInstance = $uibModal.open({
+      animation: true,
+      templateUrl: 'myModalContent.html',
+      controller: 'ModalInstanceCtrl',
+      resolve: {
+        data: function () {
+          return {header : header, body : body};
+        }
+      }
+    });
+
+    modalInstance.result.then(function (result) {
+      main.modalResult = result;
+    }, function () {
+      console.log('Окно отменено : ' + new Date());
+    });
+  };
+}
+
+mainModule.controller('ModalInstanceCtrl', ['$scope', '$uibModalInstance', 'data', ModalInstanceCtrl]);
+
+function ModalInstanceCtrl($scope, $uibModalInstance, data) {
+  
+  $scope.modalHeader = data.header;
+  $scope.modalBody = data.body;
+
+  $scope.ok = function () {
+    $uibModalInstance.close('Ахтунг!');
+  };
+
+  $scope.cancel = function () {
+    $uibModalInstance.dismiss('cancel');
+  };
 }
