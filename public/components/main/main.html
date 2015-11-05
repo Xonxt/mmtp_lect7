@@ -1,0 +1,61 @@
+<div style="width:600px; padding: 10px">
+  <!-- ACCORDIONS -->
+  <uib-accordion>
+    <uib-accordion-group is-open="main.bottomToggled">
+      <uib-accordion-heading>
+        Здесь хранятся аккордеоны <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': main.bottomToggled, 'glyphicon-chevron-right': !main.bottomToggled}"></i>
+      </uib-accordion-heading>
+
+      <uib-accordion close-others="true">
+        <uib-accordion-group heading="Заголовок" is-open="main.status.isFirstOpen" is-disabled="main.status.isFirstDisabled">
+          Здесь контент забит напрямую.
+        </uib-accordion-group>
+
+        <uib-accordion-group heading="{{main.myHeader}}">
+          {{main.myBody}}
+        </uib-accordion-group>
+
+        <uib-accordion-group heading="{{group.title}}" ng-repeat="group in main.groups">
+          {{group.content}}
+        </uib-accordion-group>
+
+        <uib-accordion-group heading="Динамическое содержимое">
+          <p>Размер растет с ростом контента</p>
+          <button type="button" class="btn btn-default btn-sm" ng-click="main.addItem()">Добавить</button>
+          <div ng-repeat="item in main.items">{{item}}</div>
+        </uib-accordion-group>
+      </uib-accordion>
+    </uib-accordion-group>
+  </uib-accordion>
+
+  <button class="btn btn-default" ng-click="main.toggleBottom()">Открыть/Закрыть</button>
+
+  <br>
+  <br>
+
+  <!-- ALERTS -->
+  <uib-accordion>
+    <uib-accordion-group heading="Алерты">
+      <uib-alert ng-repeat="alert in main.alerts" type="{{alert.type}}" close="main.closeAlert($index)">{{alert.msg}}</uib-alert>
+      <button type="button" class='btn btn-default' ng-click="main.addAlert()">Добавить Alert</button>
+    </uib-accordion-group>
+  </uib-accordion>
+
+  <!-- CAROUSEL -->
+  <uib-accordion>
+    <uib-accordion-group heading="Карусель">
+      <div style="height: 305px; width: 500px; padding: 20px">
+        <uib-carousel interval="main.myInterval" no-wrap="main.noWrapSlides">
+          <uib-slide ng-repeat="slide in main.slides" active="slide.active">
+            <img ng-src="{{slide.image}}" style="margin:auto;">
+            <div class="carousel-caption">
+              <h4>Слайд {{$index + 1}}</h4>
+              <p>{{slide.text}}</p>
+            </div>
+          </uib-slide>
+        </uib-carousel>
+      </div>
+      <button class="btn btn-success" ng-click="main.addSlide()">Добавить</button>
+    </uib-accordion-group>
+  </uib-accordion>
+</div>

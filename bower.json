@@ -1,0 +1,26 @@
+{
+  "name": "lect7",
+  "version": "0.0.0",
+  "authors": [
+    "Xonxt <kov.nikit@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/vendor",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular" : "latest",
+    "angular-new-router": "latest",
+    "angular-resource": "latest",
+    "angular-ui": "latest",
+    "angular-bootstrap": "latest",
+    "angular-ui-router": "latest",
+    "angular-animate": "latest",
+    "bootstrap": "latest"
+  }
+}
